@@ -1,11 +1,12 @@
-import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from './context/AuthContext';
-import Home from './pages/Home';
-import BlogPage from './pages/Blog/BlogPage';
-import BlogPost from './pages/Blog/BlogPost';
-import AdminDashboard from './pages/Admin/Dashboard';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
+import { useAuth } from './context/AuthContext';
+import AdminDashboard from './pages/Admin/Dashboard';
+import BlogForm from './pages/Blog/BlogForm';
+import BlogPage from './pages/Blog/BlogPage';
+import BlogPost from './pages/Blog/BlogPost';
+import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 
 const PrivateRoute = ({ adminOnly = false }) => {
@@ -30,6 +31,7 @@ const AppRoutes = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/blogs" element={<BlogPage />} />
+            <Route path="/blogs/new" element={<BlogForm />} />
             <Route path="/blogs/:id" element={<BlogPost />} />
 
             {/* Protected routes */}

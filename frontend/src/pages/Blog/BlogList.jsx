@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getBlogs } from '../../services/blog';
 import BlogCard from './BlogCard';
-import Spinner from '../UI/Spinner';
-import Button from '../UI/Button';
+
+import Button from '../../components/UI/Button';
+import Spinner from '../../components/UI/Spinner';
 import { useAuth } from '../../context/AuthContext';
 
 const BlogList = () => {

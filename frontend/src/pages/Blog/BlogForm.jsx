@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../components/UI/Button';
+import Input from '../../components/UI/Input';
 import { useAuth } from '../../context/AuthContext';
 import { createBlog, updateBlog } from '../../services/blog';
-import Input from '../UI/Input';
-import Button from '../UI/Button';
-import Textarea from '../UI/Textarea';
+import Textarea from '../../components/UI/Textarea';
 
 const BlogForm = ({ blog = null }) => {
     const [title, setTitle] = useState(blog?.title || '');

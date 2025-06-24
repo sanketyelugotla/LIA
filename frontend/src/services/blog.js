@@ -1,42 +1,36 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API = axios.create({
+    baseURL: 'http://localhost:5000/blogs',
+    withCredentials: true, // Automatically sends cookies with every request
+});
 
-const getBlogs = async () => {
-    const response = await axios.get(`${API_URL}/blogs`);
+// Fetch all blogs
+export const getBlogs = async () => {
+    const response = await API.get('/');
     return response.data;
 };
 
-const getBlog = async (id) => {
-    const response = await axios.get(`${API_URL}/blogs/${id}`);
+// Fetch single blog by ID
+export const getBlog = async (id) => {
+    const response = await API.get(`/${id}`);
     return response.data;
 };
 
-const createBlog = async (blogData, token) => {
-    const response = await axios.post(`${API_URL}/blogs`, blogData, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
+// Create a new blog (requires login)
+export const createBlog = async (blogData) => {
+    const response = await API.post('/', blogData);
     return response.data;
 };
 
-const updateBlog = async (id, blogData, token) => {
-    const response = await axios.patch(`${API_URL}/blogs/${id}`, blogData, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
+// Update a blog by ID (requires login)
+export const updateBlog = async (id, blogData) => {
+    const response = await API.patch(`/${id}`, blogData);
     return response.data;
 };
 
-const deleteBlog = async (id, token) => {
-    const response = await axios.delete(`${API_URL}/blogs/${id}`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
+// Delete a blog by ID (requires login)
+export const deleteBlog = async (id) => {
+    const response = await API.delete(`/${id}`);
     return response.data;
 };
-
-export { getBlogs, getBlog, createBlog, updateBlog, deleteBlog };

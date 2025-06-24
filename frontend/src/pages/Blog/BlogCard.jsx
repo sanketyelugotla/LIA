@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { formatDate } from '../../utils/helpers';
 
 const BlogCard = ({ blog }) => {
+    console.log(blog)
     return (
         <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
             <div className="p-6">

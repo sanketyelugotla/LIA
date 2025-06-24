@@ -4,7 +4,10 @@ const APIFeatures = require('../utils/apiFeatures');
 
 exports.getAllBlogs = async (req, res, next) => {
     try {
-        const features = new APIFeatures(Blog.find(), req.query)
+        const features = new APIFeatures(
+            Blog.find().populate('author', 'name'),
+            req.query
+        )
             .filter()
             .sort()
             .limitFields()

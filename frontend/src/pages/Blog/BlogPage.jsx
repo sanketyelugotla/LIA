@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import BlogList from '../../components/Blog/BlogList';
+import BlogList from './BlogList';
 
 const BlogPage = () => {
     const { user } = useAuth();
