@@ -1,7 +1,26 @@
-import React from 'react'
+import AppRoutes from './routes';
+import { useAuth } from './context/AuthContext';
+import Header from './components/Layout/Header';
+import Footer from './components/Layout/Footer';
+import Alert from './components/UI/Alert';
 
-export default function App() {
+function App() {
+  const { loading } = useAuth();
+
+  if (loading) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  }
+
   return (
-    <div>App</div>
-  )
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <Alert />
+        <AppRoutes />
+      </main>
+      <Footer />
+    </div>
+  );
 }
+
+export default App;

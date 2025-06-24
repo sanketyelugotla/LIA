@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API = axios.create({
+    baseURL: 'http://localhost:5000/auth',
+    withCredentials: true,
+});
 
-export const login = async (email, password) => {
-    const response = await axios.post(`${API_URL}/auth/login`, { email, password });
-    return response.data;
-};
+export const login = (email, password) =>
+    API.post('/login', { email, password });
 
-export const register = async (name, email, password, role) => {
-    const response = await axios.post(`${API_URL}/auth/signup`, { name, email, password, role });
-    return response.data;
-};
+export const register = (name, email, password, role) =>
+    API.post('/signup', { name, email, password, role });
 
-export const logout = async () => {
-    const response = await axios.get(`${API_URL}/auth/logout`);
-    return response.data;
-};
+export const logout = () =>
+    API.post('/logout');
+
+export const verifyToken = () =>
+    API.get('/verify');

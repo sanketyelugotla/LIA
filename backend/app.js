@@ -28,15 +28,15 @@ app.use(cors({
     origin: process.env.FRONTEND_URL,
     credentials: true
 }));
-app.use(helmet());
-if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
-}
+// app.use(helmet());
+// if (process.env.NODE_ENV === 'development') {
+    // app.use(morgan('dev'));
+// }
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
-app.use(mongoSanitize());
-app.use(xss());
-app.use(hpp());
+// app.use(mongoSanitize());
+// app.use(xss());
+// app.use(hpp());
 
 // Rate limiting
 const limiter = rateLimit({
@@ -44,12 +44,12 @@ const limiter = rateLimit({
     windowMs: 60 * 60 * 1000,
     message: 'Too many requests from this IP, please try again in an hour!'
 });
-app.use('/api', limiter);
+// app.use('/api', limiter);
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/blogs', blogRoutes);
-app.use('/api/users', userRoutes);
+app.use('/auth', authRoutes);
+app.use('/blogs', blogRoutes);
+app.use('/users', userRoutes);
 
 // Error handling for unhandled routes
 // app.all('*', (req, res, next) => {
