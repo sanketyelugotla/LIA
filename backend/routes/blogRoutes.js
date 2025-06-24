@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const blogController = require('../controllers/blogController');
 const { checkRole } = require('../middleware/role');
-
+const blogController = require('../controllers/blogControlller')
 // Public routes
 router.get('/', blogController.getAllBlogs);
 router.get('/:id', blogController.getBlog);
