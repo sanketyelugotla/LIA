@@ -18,9 +18,7 @@ exports.getAllBlogs = async (req, res, next) => {
         res.status(200).json({
             status: 'success',
             results: blogs.length,
-            data: {
-                blogs,
-            },
+            blogs,
         });
     } catch (err) {
         next(err);
@@ -98,9 +96,7 @@ exports.getBlog = async (req, res, next) => {
 
         res.status(200).json({
             status: 'success',
-            data: {
-                blog,
-            },
+            blog,
         });
     } catch (err) {
         next(err);
@@ -125,9 +121,7 @@ exports.createBlog = async (req, res, next) => {
 
         res.status(201).json({
             status: 'success',
-            data: {
-                blog: newBlog,
-            },
+            blog: newBlog,
         });
     } catch (err) {
         next(err);
@@ -159,9 +153,7 @@ exports.updateBlog = async (req, res, next) => {
 
         res.status(200).json({
             status: 'success',
-            data: {
-                blog: updatedBlog,
-            },
+            blog: updatedBlog,
         });
     } catch (err) {
         next(err);

@@ -21,7 +21,7 @@ const BlogPost = () => {
         const fetchBlog = async () => {
             try {
                 const data = await getBlog(id);
-                setBlog(data.data.blog);
+                setBlog(data.blog);
             } catch (err) {
                 setError(err.message);
             } finally {
