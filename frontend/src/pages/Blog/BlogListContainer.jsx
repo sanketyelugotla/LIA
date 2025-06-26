@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Button from '../../components/UI/Button';
 import Spinner from '../../components/UI/Spinner';
 import { useAuth } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 const BlogListContainer = ({ fetchFunction, children }) => {
     const [blogs, setBlogs] = useState([]);
