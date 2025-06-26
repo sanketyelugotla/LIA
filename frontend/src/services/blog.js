@@ -21,6 +21,11 @@ export const getFeaturedBlog = async () => {
     return response.data;
 };
 
+export const getPopularBlogs = async () => {
+    const response = await API.get('/popular');
+    return response.data;
+};
+
 // Fetch single blog by ID
 export const getBlog = async (id) => {
     const response = await API.get(`/${id}`);

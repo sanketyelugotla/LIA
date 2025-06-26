@@ -1,22 +1,24 @@
 const data = [
     {
-        title: "How to make a Game Look more attractive with New VR & AI Technology",
-        description: "Google has been investing in Al for many years and bringing its benefits to individuals, businesses and communities.Whether it's publishing state- of - the - art research, building helpful products or developing tools and resources that enable others, were committed to making Al accessible to everyone.",
-        category: "Development",
-        image: "https://www.embitel.com/wp-content/uploads/Virtual-Reality-gaming.jpg",
+        title: "Make some drinks with chocolates chocolates and milk",
+        description: "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.survival strategies to ensure proactive",
+        category: "Sports",
+        image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSSju96eq8UduydeAI_Y64BrVukOY9g-CsopGbE_69BtppW0m08",
         url: "a",
         content: "a",
+        views: 6,
     }
 ]
 
 function extractFields(articles) {
-    return articles.map(({ title, description, content, category, url, image }) => ({
+    return articles.map(({ title, description, content, category, url, image, views }) => ({
         title,
         description,
         content,
         url,
         category,
         image,
+        views
     }));
 }
 

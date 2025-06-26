@@ -6,6 +6,7 @@ const blogController = require('../controllers/blogControlller')
 router.get('/', blogController.getAllBlogs);
 router.get('/featured', blogController.getFeaturedBlog)
 router.get('/recent', blogController.getRecentBlogs)
+router.get('/popular', blogController.getPopularBlogs)
 router.get('/:id', blogController.getBlog);
 
 // Protected routes (require authentication)

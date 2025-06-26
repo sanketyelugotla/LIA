@@ -48,6 +48,27 @@ exports.getRecentBlogs = async (req, res, next) => {
     }
 };
 
+exports.getPopularBlogs = async (req, res, next) => {
+    try {
+        const blogs = await Blog.find({})
+            .sort({ views: -1 })
+            .limit(3)
+            .populate('author', 'name');
+
+        if (!blogs || blogs.length === 0) {
+            return next(new AppError('No popular blogs found', 404));
+        }
+
+        res.status(200).json({
+            status: 'success',
+            results: blogs.length,
+            blogs,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
 exports.getFeaturedBlog = async (req, res, next) => {
     try {
         const blogs = await Blog.find({ featured: true }).populate('author', 'name');
@@ -88,7 +109,7 @@ exports.getBlog = async (req, res, next) => {
 
 exports.createBlog = async (req, res, next) => {
     try {
-        const { title, content, description, url, image } = req.body;
+        const { title, content, description, url, image, views } = req.body;
         // const author = req.user.id;
         const author = '685ac90e1184fdafa269536f'
 
@@ -96,7 +117,10 @@ exports.createBlog = async (req, res, next) => {
             title,
             content,
             author,
-            description, url, image
+            description,
+            url,
+            image,
+            views
         });
 
         res.status(201).json({

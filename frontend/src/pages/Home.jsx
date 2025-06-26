@@ -1,7 +1,10 @@
+// Home.js
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import RecentBlogs from './Blog/RecentBlogs';
 import FeaturedBlog from './Blog/FeaturedBlog';
+import PopularBlogs from './Blog/PopularBlogs';
+import SectionTitle from '../components/UI/SectionTile';
 
 const Home = () => {
     const { user, isAdmin } = useAuth();
@@ -10,13 +13,15 @@ const Home = () => {
         <>
             <FeaturedBlog />
             <div className="max-w-7xl mx-auto px-4 py-12">
-                {/* Hero Section */}
-                {/* Featured post */}
-
                 {/* Recent Post Section */}
                 <div className="mb-16">
-                    <h3 className="text-4xl text-[#333333] mb-8 pb-2">Our Recent Posts</h3>
+                    <SectionTitle>Our Recent Posts</SectionTitle>
                     <RecentBlogs />
+                </div>
+
+                <div className="mb-16">
+                    <SectionTitle>Popular Posts</SectionTitle>
+                    <PopularBlogs />
                 </div>
 
                 {/* Call to Action */}
