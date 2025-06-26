@@ -1,20 +1,13 @@
-const Textarea = ({ label, value, onChange, rows = 4, required = false }) => {
+const Textarea = ({ label, value, onChange, ...props }) => {
     return (
-        <div className="flex flex-col space-y-1">
-            {label && (
-                <label className="text-sm font-medium text-gray-700">
-                    {label}
-                </label>
-            )}
+        <div className="space-y-1">
+            {label && <label className="block text-sm font-medium text-gray-700">{label}</label>}
             <textarea
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 value={value}
                 onChange={onChange}
-                rows={rows}
-                required={required}
-                className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
+                {...props}
             />
         </div>
     );
-};
-
-export default Textarea;
+  };
