@@ -2,12 +2,22 @@ import axios from 'axios';
 
 const API = axios.create({
     baseURL: 'http://localhost:5000/blogs',
-    withCredentials: true, // Automatically sends cookies with every request
+    withCredentials: true,
 });
 
 // Fetch all blogs
 export const getBlogs = async () => {
     const response = await API.get('/');
+    return response.data;
+};
+
+export const getRecentBlogs = async () => {
+    const response = await API.get('/recent');
+    return response.data;
+};
+
+export const getFeaturedBlog = async () => {
+    const response = await API.get('/featured');
     return response.data;
 };
 

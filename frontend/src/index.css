@@ -14,3 +14,30 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nico Moji';
+  src: url('./assets/fonts/NicoMoji.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Volkhov';
+  src: url('./assets/fonts/Volkhov.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/Roboto.ttf') format('truetype');
+}
+
+@theme {
+  --font-display: "Montserrat", "Montserrat";
+  --font-display: "Nico Moji", "Nico Moji";
+  --font-display: "Volkhov", "Volkhov";
+  --font-display: "Roboto", "Roboto";
+}

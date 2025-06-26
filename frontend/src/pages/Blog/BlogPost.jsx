@@ -47,17 +47,19 @@ const BlogPost = () => {
     const isAdmin = user && user.role === 'admin';
 
     return (
-        <div className="max-w-3xl mx-auto">
-            <article className="bg-white rounded-lg shadow-md p-6 mb-6">
-                <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
-                <div className="flex justify-between items-center mb-6 text-sm text-gray-500">
-                    <span>By {blog.author.name}</span>
-                    <span>{formatDate(blog.createdAt)}</span>
-                </div>
-                <div className="prose max-w-none">
-                    <p className="whitespace-pre-line">{blog.content}</p>
-                </div>
-            </article>
+        <div className="max-w-3xl mx-auto px-4 py-8">
+            <div className="flex justify-between items-center mb-4">
+                <span className="text-sm font-bold uppercase tracking-wider text-gray-500">
+                    {blog.category || 'CONTINUING!'}
+                </span>
+                <span className="text-sm text-gray-500">{formatDate(blog.createdAt)}</span>
+            </div>
+
+            <h1 className="text-3xl font-bold mb-6">{blog.title}</h1>
+
+            <div className="prose max-w-none mb-8">
+                <p className="whitespace-pre-line text-gray-700 leading-relaxed">{blog.content}</p>
+            </div>
 
             {(isAuthor || isAdmin) && (
                 <div className="flex justify-end space-x-4">

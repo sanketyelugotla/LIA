@@ -27,6 +27,46 @@ exports.getAllBlogs = async (req, res, next) => {
     }
 };
 
+exports.getRecentBlogs = async (req, res, next) => {
+    try {
+        const blogs = await Blog.find({})
+            .sort({ createdAt: -1 })
+            .limit(3)
+            .populate('author', 'name');
+
+        if (!blogs || blogs.length === 0) {
+            return next(new AppError('No blogs found', 404));
+        }
+
+        res.status(200).json({
+            status: 'success',
+            results: blogs.length,
+            blogs,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+exports.getFeaturedBlog = async (req, res, next) => {
+    try {
+        const blogs = await Blog.find({ featured: true }).populate('author', 'name');
+        console.log(blogs)
+
+        if (!blogs || blogs.length === 0) {
+            return next(new AppError('No featured blogs found', 404));
+        }
+
+        res.status(200).json({
+            status: 'success',
+            results: blogs.length,
+            blogs,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
 exports.getBlog = async (req, res, next) => {
     try {
         const blog = await Blog.findById(req.params.id).populate('author', 'name email');
@@ -48,13 +88,15 @@ exports.getBlog = async (req, res, next) => {
 
 exports.createBlog = async (req, res, next) => {
     try {
-        const { title, content } = req.body;
-        const author = req.user.id;
+        const { title, content, description, url, image } = req.body;
+        // const author = req.user.id;
+        const author = '685ac90e1184fdafa269536f'
 
         const newBlog = await Blog.create({
             title,
             content,
             author,
+            description, url, image
         });
 
         res.status(201).json({

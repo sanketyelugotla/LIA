@@ -1,13 +1,12 @@
-// BlogList.js
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getBlogs } from '../../services/blog';
+import { getRecentBlogs } from '../../services/blog';
 import BlogCard from './BlogCard';
 import Button from '../../components/UI/Button';
 import Spinner from '../../components/UI/Spinner';
 import { useAuth } from '../../context/AuthContext';
 
-const BlogList = () => {
+const RecentBlogs = () => {
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -16,7 +15,7 @@ const BlogList = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const { data } = await getBlogs();
+                const data = await getRecentBlogs();
                 setBlogs(data.blogs || []);
             } catch (err) {
                 setError(err.message || 'Failed to load blogs');
@@ -30,7 +29,7 @@ const BlogList = () => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-[300px]">
+            <div className="flex justify-center items-center min-h-[200px]">
                 <Spinner size="large" />
             </div>
         );
@@ -38,7 +37,7 @@ const BlogList = () => {
 
     if (error) {
         return (
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="max-w-6xl mx-auto px-4">
                 <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
                     <p>{error}</p>
                     <Button
@@ -55,7 +54,7 @@ const BlogList = () => {
 
     if (blogs.length === 0) {
         return (
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+            <div className="max-w-6xl mx-auto px-4 py-12 text-center">
                 <h3 className="text-xl font-medium mb-4">No blogs found</h3>
                 {user && (
                     <Link
@@ -70,8 +69,8 @@ const BlogList = () => {
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"> 
+        <div className="max-w-6xl mx-auto px-4 py-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {blogs.map((blog) => (
                     <div key={blog._id} className="flex">
                         <BlogCard blog={blog} />
@@ -82,4 +81,4 @@ const BlogList = () => {
     );
 };
 
-export default BlogList;
+export default RecentBlogs;
