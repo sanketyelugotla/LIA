@@ -8,6 +8,7 @@ import BlogPage from './pages/Blog/BlogPage';
 import BlogPost from './pages/Blog/BlogPost';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import BlogEdit from './pages/Blog/BlogEdit';
 
 const PrivateRoute = ({ adminOnly = false }) => {
     const { user, isAdmin } = useAuth();
@@ -33,6 +34,7 @@ const AppRoutes = () => {
             <Route path="/blogs" element={<BlogPage />} />
             <Route path="/blogs/new" element={<BlogForm />} />
             <Route path="/blogs/:id" element={<BlogPost />} />
+            <Route path="/blogs/:id/edit" element={<BlogEdit />} />
 
             {/* Protected routes */}
             <Route element={<PrivateRoute />}>
